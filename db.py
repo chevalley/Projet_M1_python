@@ -28,7 +28,7 @@ cursor.execute(query)
 
 
 connection.close()
-"""
+
 def new_user(login, mdp):
     query = "INSERT INTO User (login, mdp) VALUES (" + login + ", " + mdp + ");"
     return query
@@ -55,7 +55,7 @@ def remove_cave(id_cave):
     query = "DELETE FROM Cave WHERE id = " + id_cave + " ;"
     return query
 
-def list_etagere(id_cave):
+def list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
     query = "SELECT * FROM Etagere WHERE id_cave = " + id_cave + " ;"
     return query
 
@@ -67,7 +67,18 @@ def remove_etagere(id_etagere):
     query = "DELETE FROM Etagere WHERE id = " + id_etagere + "; "
     return query
 
-#def add_bottle()
+def list_linked_wine(region):
+    query = "SELECT * from Vin WHERE region = " + region + "; "
+    return query
+
+def add_bottles(id_etagere, id_vin, quantite, dispo):
+    query1 = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES (" + id_etagere + ", " + id_vin + ", " + quantite + ") ;"
+    query2 = "UPDATE Etagere SET disponibilite = " + dispo + " WHERE id = "+ id_etagere +" ;"
+    return query1, query2
+
+#def remove_bottles(id_etagere, id_vin, quantite): 
+#----> prochaine requête à faire, nécessite de mettre au claire la recupération des bouteilles déjà présentes dans l'étagère
+#----> devra potentiellement etre divisé en deux fonctions selon la qté de bouteilles du même types restantes dans l'étagère
 
 #query = "INSERT INTO Vin (nom, type, region, note_p) VALUES ("Bordelais", "Rouge", "Nouvelle-Aquitaine", 12);"
 #cursor.execute(query)
@@ -82,6 +93,3 @@ def remove_etagere(id_etagere):
 #rows = cursor.execute("SELECT * FROM Vin")
 #data = rows.fetchall()
 #print(data) 
-
-
-"""
