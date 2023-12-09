@@ -7,11 +7,11 @@ class Cave :
 
 class Etagère :
 
-    def __init__(self, id_etagere, region, disponibilite, contenance):
+    def __init__(self, id_etagere, region, disponibilite, capacite):
         self.num = id_etagere
         self.region = region
         self.disponibilite = disponibilite
-        self.contenance = contenance
+        self.capacite = capacite
 
 
 class Vin :

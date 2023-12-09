@@ -1,5 +1,6 @@
-vérifier tables vin, etgare et cave
-ajouter les tables manquantes
+vérifier tables vin, etgare et cave 	check
+ajouter les tables manquantes		check
+
 fonction :
 -authentification
 -ajout users
