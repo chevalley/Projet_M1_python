@@ -1,0 +1,19 @@
+vérifier tables vin, etgare et cave
+ajouter les tables manquantes
+fonction :
+-authentification
+-ajout users
+
+-récup cave
+-ajout cave
+-suppr cave
+->select cave
+	-modif cave
+	-recup etagere
+	-ajout etagere
+	-suppr etagere
+	->select etagere
+		-modif etagere
+		-recup vin
+		-ajoute vin
+		-retire vin
