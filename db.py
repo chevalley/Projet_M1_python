@@ -69,7 +69,7 @@ def remove_etagere(id_etagere):
 
 #def add_bottle()
 
-#query = """INSERT INTO Vin (nom, type, region, note_p) VALUES ("Bordelais", "Rouge", "Nouvelle-Aquitaine", 12);"""
+#query = "INSERT INTO Vin (nom, type, region, note_p) VALUES ("Bordelais", "Rouge", "Nouvelle-Aquitaine", 12);"
 #cursor.execute(query)
 #query = "INSERT INTO Vin (nom, type, region, note_p) VALUES ('Chigneron', 'Rosé', 'Auvergne-Rhône-Alpes', 20);"
 #cursor.execute(query)
