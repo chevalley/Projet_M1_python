@@ -1,11 +1,33 @@
 import sqlite3
 
-connection = sqlite3.connect("./viticulture.db")
-###SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'; <----- permet de vérifier si la table existe déjà     
-cursor = connection.cursor()
 
+#------------------------------------------------#
 
-#query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, type TEXT, region TEXTE, note_p INTEGER);"
+#Fonction manipulation base de donnée
+
+#connection = sqlite3.connect("./viticulture.db")
+
+#cursor = connection.cursor()
+
+#connection.close()
+
+#cursor.execute("SQL query")
+
+def connect_db():
+    return sqlite3.connect("./viticulture.db")
+
+def adapte(sql_data):
+    py_data = sql_data.fetchall()
+    return py_data
+
+#------------------------------------------------#
+### Requêtes concernant la création des tables
+### Commentées car utilisées qu'une fois
+
+#query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';" <----- permet de vérifier si la table existe déjà     
+#cursor.execute(query)
+
+#query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, domaine TEXT, type TEXT, année INTEGER, region TEXT, note_m INTEGER, prix REAL);"
 #cursor.execute(query)
 
 #query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
@@ -23,63 +45,81 @@ cursor = connection.cursor()
 #query = "CREATE TABLE Contenu (id_etagere INTEGER, id_vin INTEGER, quantite INTEGER, FOREIGN KEY(id_etagere) REFERENCES Etagere(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
 #cursor.execute(query)
 
-#query = "CREATE TABLE Evaluation (id_user INTEGER, id_vin INTEGER, note_perso INTEGER, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
+#query = "CREATE TABLE Evaluation (id_user INTEGER, id_vin INTEGER, note_perso INTEGER, commentaire TEXT, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
 #cursor.execute(query)
 
+#------------------------------------------------#
 
-connection.close()
+###Fonction d'usage
 
-def new_user(login, mdp):
-    query = "INSERT INTO User (login, mdp) VALUES (" + login + ", " + mdp + ");"
+def sql_check_dispo(login):
+    query = "SELECT login FROM User WHERE login = "+ login +"; "
     return query
 
-def authentification(login, mdp):
+def sql_new_user(login, mdp, nom, prenom):
+    query = "INSERT INTO User (login, mdp, nom, prenom) VALUES (" + login + ", " + mdp + ", " + nom + ", " + prenom + ");"
+    return query
+
+def sql_authentification(login, mdp):
     query = "SELECT id, nom, prenom FROM User WHERE login = " + login + " AND mdp = " + mdp + " ;" 
     return query
 
-def new_cave(nb_etagere, localisation, id_user):
-    query1 = "INSERT INTO Cave (nb_etagere, localisation) VALUES (" + nb_etagere + ", " + localisation + ");"
-    id_cave = "SELECT id  FROM Cave WHERE id = (SELECT MAX(id) FROM Cave);"
-    query2 = "INSERT INTO Possession (id_user, id_cave) VALUES (" + id_user +", " + id_cave + ")"
-    return query1, query2
+def sql_new_cave(nb_etagere, localisation):
+    query = "INSERT INTO Cave (nb_etagere, localisation) VALUES (" + nb_etagere + ", " + localisation + ");"
+    return query
 
-def share_cave(id_user, id_cave):
+def sql_recup_id_new_cave():
+    query = "SELECT id  FROM Cave WHERE id = (SELECT MAX(id) FROM Cave);"
+    return query
+
+def sql_link_cave(id_user, id_cave):
+    query = "INSERT INTO Possession (id_user, id_cave) VALUES (" + id_user +", " + id_cave + ");"
+    return query
+
+def sql_share_cave(id_user, id_cave):
     query = "INSERT INTO Possession (id_user, id_cave) VALUES (" + id_user + ", " + id_cave + ");"
     return query
 
-def list_cave(id_user):
+def sql_list_cave(id_user):
     query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = " + id_user + " ;" 
     return query
 
-def remove_cave(id_cave):
+def sql_remove_cave(id_cave):
     query = "DELETE FROM Cave WHERE id = " + id_cave + " ;"
     return query
 
-def list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
+def sql_list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
     query = "SELECT * FROM Etagere WHERE id_cave = " + id_cave + " ;"
     return query
 
-def new_etagere(region, capacite, disponibilite, id_cave):
+def sql_new_etagere(region, capacite, disponibilite, id_cave):
     query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave) VALUES (" + region + ", " + capacite + ", " + disponibilite + ", " + id_cave + ") ;"
     return query
 
-def remove_etagere(id_etagere):
+def sql_remove_etagere(id_etagere):
     query = "DELETE FROM Etagere WHERE id = " + id_etagere + "; "
     return query
 
-def list_linked_wine(region):
+def sql_list_linked_wine(region):
     query = "SELECT * from Vin WHERE region = " + region + "; "
     return query
 
-def add_bottles(id_etagere, id_vin, quantite, dispo):
-    query1 = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES (" + id_etagere + ", " + id_vin + ", " + quantite + ") ;"
-    query2 = "UPDATE Etagere SET disponibilite = " + dispo + " WHERE id = "+ id_etagere +" ;"
-    return query1, query2
+def sql_add_bottle(id_etagere, id_vin, quantite):
+    query = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES (" + id_etagere + ", " + id_vin + ", " + quantite + ") ;"
+    return query
+
+def sql_fill_etagere(dispo, id_etagere):
+    query = "UPDATE Etagere SET disponibilite = " + dispo + " WHERE id = "+ id_etagere +" ;"
+    return query
 
 #def remove_bottles(id_etagere, id_vin, quantite): 
 #----> prochaine requête à faire, nécessite de mettre au claire la recupération des bouteilles déjà présentes dans l'étagère
 #----> devra potentiellement etre divisé en deux fonctions selon la qté de bouteilles du même types restantes dans l'étagère
 
+
+#------------------------------------------------#
+
+###Bric-à-Brac
 #query = "INSERT INTO Vin (nom, type, region, note_p) VALUES ("Bordelais", "Rouge", "Nouvelle-Aquitaine", 12);"
 #cursor.execute(query)
 #query = "INSERT INTO Vin (nom, type, region, note_p) VALUES ('Chigneron', 'Rosé', 'Auvergne-Rhône-Alpes', 20);"
@@ -93,3 +133,4 @@ def add_bottles(id_etagere, id_vin, quantite, dispo):
 #rows = cursor.execute("SELECT * FROM Vin")
 #data = rows.fetchall()
 #print(data) 
+
