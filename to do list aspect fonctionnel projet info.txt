@@ -1,22 +1,7 @@
-A update dans des délais assez brefs
+générer la page de connexion + ajout message d'information inscription réussie et message d'erreur si compte pas trouvé
+générer page "hub" de l'utilisateur listant toute ses caves + ajout message si pas de cave + bouton visualiser la liste des bouteilles disponibles
+générer page liste bouteilles ajouter note perso et calcul note d'ensemble
+générer la liste des bouteilles existantes -----> générer dans la BDD un certain nombre de bouteilles
+après selection de la cave, listant toute ses étagères + ajout message si pas d'étagères + ajout d'information supplémentaire
 
-vérifier tables vin, etgare et cave 	check
-ajouter les tables manquantes		check
-
-fonction :
--authentification check
--ajout users check
-
--récup cave
--ajout cave
--suppr cave
-->select cave
-	-modif cave
-	-recup etagere
-	-ajout etagere
-	-suppr etagere
-	->select etagere
-		-modif etagere
-		-recup vin
-		-ajoute vin
-		-retire vin
+---> doit etre fini avant le jeudi prochain
