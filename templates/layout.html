@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Caves de Vins</title>
+    <style>
+        body {
+            background-color: #ffffff; /* Fond blanc */
+            color: #333333; /* Couleur du texte */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: #8e44ad; /* Violet */
+            padding: 20px;
+            color: #ffffff;
+            position: static;
+        }
+
+        .register-button, .login-button {
+            margin: 10px;
+            padding: 10px;
+            background-color: #ff99cc; /* Rose plus prononcé */
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            margin-right: 20px;
+            
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        #slider {
+            width: 200px; /* Ajustez la largeur selon vos besoins */
+            height: 100vh; /* Hauteur égale à la hauteur de la vue */
+            background-color: #2ecc71; /* Vert */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1> {% block title%}{% endblock %} </h1>
+        <a href="#" class="register-button">S'enregistrer</a>
+        <a href="#" class="login-button">Se connecter</a>
+    </header>
+
+    {% block content%}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; 2023 Gestion des Caves de Vins</p>
+    </footer>
+
+</body>
+</html>
