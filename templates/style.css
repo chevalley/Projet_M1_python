@@ -1,0 +1,66 @@
+body {
+    background-color: #ffffff; /* Fond blanc */
+    color: #333333; /* Couleur du texte */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #8e44ad; /* Violet */
+    padding: 20px;
+    color: #ffffff;
+    position: static;
+}
+
+.register-button, .login-button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #ff99cc; /* Rose plus prononcé */
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button {
+    margin-right: 20px;
+    
+}
+
+section {
+    margin: 20px;
+}
+
+#slider {
+    width: 200px; /* Ajustez la largeur selon vos besoins */
+    height: 100vh; /* Hauteur égale à la hauteur de la vue */
+    background-color: #2ecc71; /* Vert */
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #ff99cc; /* Rose plus prononcé */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

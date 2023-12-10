@@ -1,9 +1,11 @@
+A update dans des délais assez brefs
+
 vérifier tables vin, etgare et cave 	check
 ajouter les tables manquantes		check
 
 fonction :
--authentification
--ajout users
+-authentification check
+-ajout users check
 
 -récup cave
 -ajout cave

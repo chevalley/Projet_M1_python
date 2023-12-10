@@ -1,1 +1,28 @@
-<h1>TEST</h1>
+{% extends "layout.html" %}
+{% block title %} Inscription {% endblock %}
+
+{% block content %} 
+
+    <section>
+        <h2>Bienvenue sur notre site</h2>
+        <p>Facilitez la gestion de votre cave à vin avec notre plateforme intuitive.</p>
+    </section>
+
+    <form method="POST" action="/votre-route-flask">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="mdp">Mot de passe:</label>
+        <input type="password" id="mdp" name="mdp" required>
+
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <button type="submit">S'inscrire</button>
+    </form>
+
+{% endblock %}
+    
