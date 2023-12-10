@@ -43,6 +43,13 @@ class User :
         connection.close()
         return data
 
+    def check_personnalite(self, prenom, nom):
+            connection = db.connect_db()
+            cursor = connection.cursor()
+            row = cursor.execute(db.sql_check_perso(nom, prenom))
+            data = db.adapte(row)
+            connection.close()
+            return data
 
     def inscryption(self, nom, prenom, login, mdp):
         connection = db.connect_db()

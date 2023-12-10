@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
-import sqlite3
-import db
 import objet as action
 
 app = Flask(__name__)
@@ -20,10 +18,15 @@ def inscryption():
         prenom = request.form["prenom"]
         new_user = action.User(nom, prenom, login, mdp)
         trouve = action.User.check_login_dispo(new_user, login)
-        print(trouve)
-        return render_template("inscription.html", first_try = False, already_exist = trouve)
+        occurence = action.User.check_personnalite(new_user, prenom, nom)
+        if (trouve != [] or occurence != []):  
+            return render_template("inscription.html", first_try = False, already_exist = trouve, already_has_account = occurence)
+        else:
+            return render_template("connection")
         
-        
+@app.route("/connection", methods=["GET", "POST"])
+def identification():
+    return render_template("connection")
 
 if __name__ == "__main__" : 
     app.run(debug=True)

@@ -56,16 +56,20 @@ def sql_check_dispo(login):
     query = "SELECT login FROM User WHERE login = '"+ login +"'; "
     return query
 
+def sql_check_perso(nom, prenom):
+    query = "SELECT nom, prenom FROM User WHERE nom = '"+ nom +"' AND prenom ='" + prenom + "'; "
+    return query
+
 def sql_new_user(login, mdp, nom, prenom):
-    query = "INSERT INTO User (login, mdp, nom, prenom) VALUES (" + login + ", " + mdp + ", " + nom + ", " + prenom + ");"
+    query = "INSERT INTO User (login, mdp, nom, prenom) VALUES ('" + login + "', '" + mdp + "', '" + nom + "', '" + prenom + "');"
     return query
 
 def sql_authentification(login, mdp):
-    query = "SELECT id, nom, prenom FROM User WHERE login = " + login + " AND mdp = " + mdp + " ;" 
+    query = "SELECT id, nom, prenom FROM User WHERE login = '" + login + "' AND mdp = '" + mdp + "' ;" 
     return query
 
 def sql_new_cave(nb_etagere, localisation):
-    query = "INSERT INTO Cave (nb_etagere, localisation) VALUES (" + nb_etagere + ", " + localisation + ");"
+    query = "INSERT INTO Cave (nb_etagere, localisation) VALUES ('" + nb_etagere + "', '" + localisation + "');"
     return query
 
 def sql_recup_id_new_cave():
@@ -73,43 +77,43 @@ def sql_recup_id_new_cave():
     return query
 
 def sql_link_cave(id_user, id_cave):
-    query = "INSERT INTO Possession (id_user, id_cave) VALUES (" + id_user +", " + id_cave + ");"
+    query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + id_user +"', '" + id_cave + "');"
     return query
 
 def sql_share_cave(id_user, id_cave):
-    query = "INSERT INTO Possession (id_user, id_cave) VALUES (" + id_user + ", " + id_cave + ");"
+    query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + id_user + "', '" + id_cave + "');"
     return query
 
 def sql_list_cave(id_user):
-    query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = " + id_user + " ;" 
+    query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = '" + id_user + "' ;" 
     return query
 
 def sql_remove_cave(id_cave):
-    query = "DELETE FROM Cave WHERE id = " + id_cave + " ;"
+    query = "DELETE FROM Cave WHERE id = '" + id_cave + "' ;"
     return query
 
 def sql_list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
-    query = "SELECT * FROM Etagere WHERE id_cave = " + id_cave + " ;"
+    query = "SELECT * FROM Etagere WHERE id_cave = '" + id_cave + "' ;"
     return query
 
 def sql_new_etagere(region, capacite, disponibilite, id_cave):
-    query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave) VALUES (" + region + ", " + capacite + ", " + disponibilite + ", " + id_cave + ") ;"
+    query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave) VALUES ('" + region + "', '" + capacite + "', '" + disponibilite + "', '" + id_cave + "') ;"
     return query
 
 def sql_remove_etagere(id_etagere):
-    query = "DELETE FROM Etagere WHERE id = " + id_etagere + "; "
+    query = "DELETE FROM Etagere WHERE id = '" + id_etagere + "'; "
     return query
 
 def sql_list_linked_wine(region):
-    query = "SELECT * from Vin WHERE region = " + region + "; "
+    query = "SELECT * from Vin WHERE region = '" + region + "'; "
     return query
 
 def sql_add_bottle(id_etagere, id_vin, quantite):
-    query = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES (" + id_etagere + ", " + id_vin + ", " + quantite + ") ;"
+    query = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES ('" + id_etagere + "', '" + id_vin + "', '" + quantite + "') ;"
     return query
 
 def sql_fill_etagere(dispo, id_etagere):
-    query = "UPDATE Etagere SET disponibilite = " + dispo + " WHERE id = "+ id_etagere +" ;"
+    query = "UPDATE Etagere SET disponibilite = '" + dispo + "' WHERE id = '"+ id_etagere +"' ;"
     return query
 
 #def remove_bottles(id_etagere, id_vin, quantite): 

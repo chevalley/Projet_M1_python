@@ -3,11 +3,22 @@
 
 {% block content %} 
 
-{% if already_exist %}
-    <h1>TROUVE</h1>
-{% else %}
-    <h1>RIEN</h1>
+{% if first_try == False %}
+    {% if already_exist %}
+        <div class="error-container">
+            <h2>Erreur d'inscription</h2>
+            <p>Le nom d'utilisateur que vous avez choisi n'est pas disponible. Veuillez en choisir un autre.</p>
+        </div>
+    {% endif %}
+
+    {% if already_has_account %}
+        <div class="error-container">
+            <h2>Erreur d'inscription</h2>
+            <p>Un compte avec le même prénom et nom existe déjà. Veuillez vérifier vos informations ou connectez-vous si vous avez déjà un compte.</p>
+        </div>
+    {% endif %}
 {% endif %}
+
 
     <section>
         <h2>Bienvenue sur notre site</h2>

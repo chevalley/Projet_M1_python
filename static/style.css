@@ -64,3 +64,15 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.error-container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffcccc; /* Rouge clair */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.error-container h2 {
+    color: #e74c3c; /* Rose plus prononcé */
+}
