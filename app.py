@@ -23,11 +23,11 @@ def inscryption():
             return render_template("inscription.html", first_try = False, already_exist = trouve, already_has_account = occurence)
         else:
             action.User.inscryption(new_user, nom, prenom, login, mdp)
-            return render_template("connection")
+            return render_template("connexion.html")
         
-@app.route("/connection", methods=["GET", "POST"])
+@app.route("/connexion", methods=["GET", "POST"])
 def identification():
-    return render_template("connection")
+    return render_template("connexion.html")
 
 if __name__ == "__main__" : 
     app.run(debug=True)
