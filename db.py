@@ -5,26 +5,26 @@ connection = sqlite3.connect("./viticulture.db")
 cursor = connection.cursor()
 
 
-query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, type TEXT, region TEXTE, note_p INTEGER);"
-cursor.execute(query)
+#query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, type TEXT, region TEXTE, note_p INTEGER);"
+#cursor.execute(query)
 
-query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER NOT NULL FOREIGN KEY);"
-cursor.execute(query)
+#query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
+#cursor.execute(query)
 
-query = "CREATE TABLE Cave (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nb_etagere INTEGER, localisation TEXTE);"
-cursor.execute(query)
+#query = "CREATE TABLE Cave (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nb_etagere INTEGER, localisation TEXTE);"
+#cursor.execute(query)
 
-query = "CREATE TABLE User (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, login TEXTE, mdp TEXTE, nom TEXTE, prenom TEXTE)"
-cursor.execute(query)
+#query = "CREATE TABLE User (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, login TEXTE, mdp TEXTE, nom TEXTE, prenom TEXTE)"
+#cursor.execute(query)
 
-query = "CREATE TABLE Possession (id_user INTERGER NOT NULL FOREIGN KEY, id_cave INTEGER NOT NULL FOREIGN KEY);"
-cursor.execute(query)
+#query = "CREATE TABLE Possession (id_user INTEGER, id_cave INTEGER, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_cave) REFERENCES Cave(id));"
+#cursor.execute(query)
 
-query = "CREATE TABLE Contenu (id_etagere INTERGER NOT NULL FOREIGN KEY, id_vin INTEGER NOT NULL FOREIGN KEY, quantite INTEGER);"
-cursor.execute(query)
+#query = "CREATE TABLE Contenu (id_etagere INTEGER, id_vin INTEGER, quantite INTEGER, FOREIGN KEY(id_etagere) REFERENCES Etagere(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
+#cursor.execute(query)
 
-query = "CREATE TABLE Evaluation (id_user INTEGER NOT NULL FOREIGN KEY, id_vin INTEGER NOT NULL FOREIGN KEY);"
-cursor.execute(query)
+#query = "CREATE TABLE Evaluation (id_user INTEGER, id_vin INTEGER, note_perso INTEGER, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
+#cursor.execute(query)
 
 
 connection.close()
