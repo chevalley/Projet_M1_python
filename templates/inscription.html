@@ -3,12 +3,18 @@
 
 {% block content %} 
 
+{% if already_exist %}
+    <h1>TROUVE</h1>
+{% else %}
+    <h1>RIEN</h1>
+{% endif %}
+
     <section>
         <h2>Bienvenue sur notre site</h2>
         <p>Facilitez la gestion de votre cave à vin avec notre plateforme intuitive.</p>
     </section>
 
-    <form method="POST" action="/votre-route-flask">
+    <form method="POST" action="/inscription">
         <label for="login">Login:</label>
         <input type="text" id="login" name="login" required>
 

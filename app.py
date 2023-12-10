@@ -19,9 +19,11 @@ def inscryption():
         nom = request.form["nom"]
         prenom = request.form["prenom"]
         new_user = action.User(nom, prenom, login, mdp)
-        action.User.check_login_dispo(new_user, login)
-        exit()
-        return render_template("inscription.html", first_try = False)
+        trouve = action.User.check_login_dispo(new_user, login)
+        print(trouve)
+        return render_template("inscription.html", first_try = False, already_exist = trouve)
+        
+        
 
 if __name__ == "__main__" : 
     app.run(debug=True)

@@ -39,10 +39,10 @@ class User :
         connection = db.connect_db()
         cursor = connection.cursor()
         row = cursor.execute(db.sql_check_dispo(login))
-        connection.close()
         data = db.adapte(row)
-        print(vars(data))
-        
+        connection.close()
+        return data
+
 
     def inscryption(self, nom, prenom, login, mdp):
         connection = db.connect_db()

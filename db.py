@@ -53,7 +53,7 @@ def adapte(sql_data):
 ###Fonction d'usage
 
 def sql_check_dispo(login):
-    query = "SELECT login FROM User WHERE login = "+ login +"; "
+    query = "SELECT login FROM User WHERE login = '"+ login +"'; "
     return query
 
 def sql_new_user(login, mdp, nom, prenom):
