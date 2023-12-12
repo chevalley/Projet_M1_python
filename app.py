@@ -23,7 +23,7 @@ def inscryption():
             return render_template("inscription.html", first_try = False, already_exist = trouve, already_has_account = occurence)
         else:
             action.User.inscryption(new_user, nom, prenom, login, mdp)
-            return redirect("/connexion")
+            return redirect("/connexion", inscryption_success = True)
         
 @app.route("/connexion", methods=["GET", "POST"])
 def identification():
