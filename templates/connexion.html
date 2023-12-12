@@ -3,18 +3,19 @@
 
 
 {% block content %} 
-
-    {% if Fresh_Inscryption %}
+    <section>
+        <h2>Bienvenue sur notre site</h2>
+        <p>Facilitez la gestion de votre cave à vin avec notre plateforme intuitive.</p>
+    </section>
+    
+    {% if session["new_user"] %}
         <div class="thanks-container">
             <h2>Inscription Réussie</h2>
             <p>Votre inscription a bien été prise en compte, vous pouvez désormais avoir accès aux différents services du gestionnaire.</p>
             <p>Nous vous remercions de votre confiance et vous invitons à vous connecter dès maintenant pour profiter de nos services.</p>
         </div>
     {% endif%}
-    <section>
-        <h2>Bienvenue sur notre site</h2>
-        <p>Facilitez la gestion de votre cave à vin avec notre plateforme intuitive.</p>
-    </section>
+    
 
     <form method="POST" action="/inscription">
         <label for="login">Login:</label>
@@ -22,12 +23,6 @@
 
         <label for="mdp">Mot de passe:</label>
         <input type="password" id="mdp" name="mdp" required>
-
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" name="nom" required>
-
-        <label for="prenom">Prénom:</label>
-        <input type="text" id="prenom" name="prenom" required>
 
         <button type="submit">S'inscrire</button>
     </form>

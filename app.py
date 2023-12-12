@@ -31,11 +31,7 @@ def inscryption():
         
 @app.route("/connexion", methods=["GET", "POST"])
 def identification():
-    if session["new_user"]:
-        return render_template("connexion.html", Fresh_Inscryption = True)
-    else:
-        return render_template("connexion.html")
+    return render_template("connexion.html")
     
-
 if __name__ == "__main__" : 
     app.run(debug=True)
