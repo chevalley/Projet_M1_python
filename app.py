@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, session
+import secrets
 import objet as action
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
 
 @app.route("/")
 def index():
@@ -9,6 +11,7 @@ def index():
 
 @app.route("/inscription", methods=["GET","POST"])
 def inscryption():
+
     if request.method=="GET":
         return render_template("inscription.html", first_try = True)
     elif request.method=="POST":
@@ -23,11 +26,16 @@ def inscryption():
             return render_template("inscription.html", first_try = False, already_exist = trouve, already_has_account = occurence)
         else:
             action.User.inscryption(new_user, nom, prenom, login, mdp)
-            return redirect("/connexion", inscryption_success = True)
+            session["new_user"] = True  
+            return redirect("/connexion")
         
 @app.route("/connexion", methods=["GET", "POST"])
 def identification():
-    return render_template("connexion.html")
+    if session["new_user"]:
+        return render_template("connexion.html", Fresh_Inscryption = True)
+    else:
+        return render_template("connexion.html")
+    
 
 if __name__ == "__main__" : 
     app.run(debug=True)

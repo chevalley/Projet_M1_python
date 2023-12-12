@@ -73,6 +73,18 @@ button {
     border-radius: 5px;
 }
 
+.thanks-container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #2ecc71; /* Vert */
+    padding: 20px;
+    border-radius: 5px;
+}
+
 .error-container h2 {
     color: #e74c3c; /* Rose plus prononcé */
+}
+
+.thanks-container h2 {
+    color: #8e44ad; /* Rose plus prononcé */
 }
