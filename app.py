@@ -26,12 +26,38 @@ def inscryption():
             return render_template("inscription.html", first_try = False, already_exist = trouve, already_has_account = occurence)
         else:
             action.User.inscryption(new_user, nom, prenom, login, mdp)
-            session["new_user"] = True  
+            session["new_user"] = True
             return redirect("/connexion")
         
 @app.route("/connexion", methods=["GET", "POST"])
 def identification():
-    return render_template("connexion.html")
-    
+
+    if request.method=="GET":
+        if 'new_user' in session:
+            session.pop("new_user", None)
+            return render_template("connexion.html", new_user = True)
+        else:
+            return render_template("connexion.html")
+        
+    if request.method=="POST":
+        login = request.form["login"]
+        mdp = request.form["mdp"]
+        user = action.User(login = login, mdp = mdp)
+        trouve = action.User.verification(user, login, mdp)
+        print(trouve)
+        if trouve != []:
+            nom = trouve[0][1]
+            prenom = trouve[0][2]
+            action.User.identification(user, nom, prenom)
+            print(user.nom, user.prenom)
+            session["id_user"] = trouve[0][0]
+            return redirect("/lobby")
+        else:
+            return render_template("connexion.html", not_found = True)
+
+@app.route("/lobby", methods=["GET", "POST"])
+def lobby():
+    return render_template("lobby.html")
+
 if __name__ == "__main__" : 
-    app.run(debug=True)
+    app.run(debug=True, host = "0.0.0.0", port = 80)

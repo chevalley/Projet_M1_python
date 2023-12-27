@@ -29,7 +29,7 @@ class Vin :
         self.prix = prix
 
 class User :
-    def __init__(self, nom, prenom, login, mdp):
+    def __init__(self, nom = "unknown", prenom = "unknown", login = "unknown", mdp = "unknown"):
         self.nom = nom
         self.prenom = prenom
         self.login = login
@@ -62,6 +62,10 @@ class User :
         connection = db.connect_db()
         cursor = connection.cursor()
         row = cursor.execute(db.sql_authentification(login, mdp))
-        connection.close()
         data = db.adapte(row)
-        print(vars(data))
+        connection.close()
+        return data
+
+    def identification(self, nom, prenom):
+        self.nom = nom
+        self.prenom = prenom

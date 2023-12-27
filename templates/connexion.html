@@ -8,23 +8,30 @@
         <p>Facilitez la gestion de votre cave à vin avec notre plateforme intuitive.</p>
     </section>
     
-    {% if session["new_user"] %}
+    {% if new_user %}
         <div class="thanks-container">
             <h2>Inscription Réussie</h2>
             <p>Votre inscription a bien été prise en compte, vous pouvez désormais avoir accès aux différents services du gestionnaire.</p>
             <p>Nous vous remercions de votre confiance et vous invitons à vous connecter dès maintenant pour profiter de nos services.</p>
         </div>
     {% endif%}
+
+    {% if not_found %}
+        <div class="error-container">
+            <h2>Erreur lors de la connexion</h2>
+            <p>Nom d'utilisateur ou mot de passe saisie incorrect. Veuillez réessayer de vous connecter.</p>
+        </div>
+    {% endif %}
     
 
-    <form method="POST" action="/inscription">
+    <form method="POST" action="/connexion">
         <label for="login">Login:</label>
         <input type="text" id="login" name="login" required>
 
         <label for="mdp">Mot de passe:</label>
         <input type="password" id="mdp" name="mdp" required>
 
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Se connecter</button>
     </form>
 
 {% endblock %}
