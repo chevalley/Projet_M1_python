@@ -1,4 +1,3 @@
-générer la page de connexion + ajout message d'information inscription réussie et message d'erreur si compte pas trouvé
 générer page "hub" de l'utilisateur listant toute ses caves + ajout message si pas de cave + bouton visualiser la liste des bouteilles disponibles
 générer page liste bouteilles ajouter note perso et calcul note d'ensemble
 générer la liste des bouteilles existantes -----> générer dans la BDD un certain nombre de bouteilles

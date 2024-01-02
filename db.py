@@ -51,7 +51,7 @@ def adapte(sql_data):
 #------------------------------------------------#
 
 ###Fonction d'usage
-
+#Fonction en lien avec le user
 def sql_check_dispo(login):
     query = "SELECT login FROM User WHERE login = '"+ login +"'; "
     return query
@@ -67,6 +67,8 @@ def sql_new_user(login, mdp, nom, prenom):
 def sql_authentification(login, mdp):
     query = "SELECT id, nom, prenom FROM User WHERE login = '" + login + "' AND mdp = '" + mdp + "' ;" 
     return query
+
+#Fonction en lien avec les caves
 
 def sql_new_cave(nb_etagere, localisation):
     query = "INSERT INTO Cave (nb_etagere, localisation) VALUES ('" + nb_etagere + "', '" + localisation + "');"
@@ -92,6 +94,8 @@ def sql_remove_cave(id_cave):
     query = "DELETE FROM Cave WHERE id = '" + id_cave + "' ;"
     return query
 
+#Fonction en lien avec les étagères
+
 def sql_list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
     query = "SELECT * FROM Etagere WHERE id_cave = '" + id_cave + "' ;"
     return query
@@ -104,6 +108,8 @@ def sql_remove_etagere(id_etagere):
     query = "DELETE FROM Etagere WHERE id = '" + id_etagere + "'; "
     return query
 
+
+#Fonction en lien avec les bouteilles
 def sql_list_linked_wine(region):
     query = "SELECT * from Vin WHERE region = '" + region + "'; "
     return query

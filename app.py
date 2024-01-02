@@ -44,20 +44,30 @@ def identification():
         mdp = request.form["mdp"]
         user = action.User(login = login, mdp = mdp)
         trouve = action.User.verification(user, login, mdp)
-        print(trouve)
+        #print(trouve)
         if trouve != []:
+            id = trouve[0][0]
             nom = trouve[0][1]
             prenom = trouve[0][2]
-            action.User.identification(user, nom, prenom)
-            print(user.nom, user.prenom)
-            session["id_user"] = trouve[0][0]
+            action.User.identification(user, nom, prenom, id)
+            #print(user.nom, user.prenom)
+            session["id"] = id
+            session["nom"] = nom
+            session["prenom"] = prenom
+            session["login"] = user.login
             return redirect("/lobby")
         else:
             return render_template("connexion.html", not_found = True)
 
 @app.route("/lobby", methods=["GET", "POST"])
 def lobby():
-    return render_template("lobby.html")
+    user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
+    list_id_cave = action.User.caves_perso(user)
+    if list_id_cave == []:
+        return render_template("lobby.html", nb_cave = 0)
+    else:
+        
+        return render_template("lobby.html", list_id_cave)
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)

@@ -29,11 +29,12 @@ class Vin :
         self.prix = prix
 
 class User :
-    def __init__(self, nom = "unknown", prenom = "unknown", login = "unknown", mdp = "unknown"):
+    def __init__(self, nom = "unknown", prenom = "unknown", login = "unknown", mdp = "unknown", id = 0):
         self.nom = nom
         self.prenom = prenom
         self.login = login
         self.mdp = mdp
+        self.id = id
 
     def check_login_dispo(self, login):
         connection = db.connect_db()
@@ -66,6 +67,14 @@ class User :
         connection.close()
         return data
 
-    def identification(self, nom, prenom):
+    def identification(self, nom, prenom, id):
         self.nom = nom
         self.prenom = prenom
+        self.id = id
+
+    def caves_perso(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row = cursor.execute(db.sql_list_cave())
+        data = db.adapte(row)
+        connection.close()
