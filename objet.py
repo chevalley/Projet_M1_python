@@ -18,6 +18,16 @@ class Cave :
         connection.close()
         #print("dans new_cave de objet :", id_new_cave)
         return id_new_cave
+    
+    def del_cave(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        cursor.execute(db.sql_unpossessed_cave(self.id))
+        connection.commit()
+        cursor.execute(db.sql_remove_cave(self.id))
+        connection.commit()
+        connection.close()
+        #print("dans new_cave de objet :", id_new_cave)
 
 class Etagère :
 
@@ -92,9 +102,9 @@ class User :
         connection.close()
         caves_trouvees = []
         for cave in range(len(data)) :  
-            cave_actuelle = [data[cave][3], data[cave][4], data[cave][5]]
+            cave_actuelle = [data[cave][3], data[cave][4], data[cave][5], data[cave][1]]
             caves_trouvees.append(cave_actuelle)
-        print("ici : ", caves_trouvees)
+        #print("ici : ", caves_trouvees)
         return caves_trouvees
     
     def link_cave(self, id_cave):

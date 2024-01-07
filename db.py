@@ -90,8 +90,12 @@ def sql_list_cave(id_user):
     query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = '" + str(id_user) + "' ;" 
     return query
 
+def sql_unpossessed_cave(id_cave):
+    query = "DELETE FROM Possession WHERE id_cave = '" + id_cave + "' ;"
+    return query
+
 def sql_remove_cave(id_cave):
-    query = "DELETE FROM Cave WHERE id = '" + id_cave + "' ;"
+    query = "DELETE FROM Cave WHERE id = '" + str(id_cave) + "' ;"
     return query
 
 #Fonction en lien avec les étagères

@@ -63,7 +63,7 @@ def identification():
 def lobby():
     user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
     list_id_cave = action.User.caves_perso(user)
-    print("nb_cave",list_id_cave)
+    #print("nb_cave",list_id_cave)
     if list_id_cave == None :
         return render_template("lobby.html", nb_cave = 0)
     else:  
@@ -71,15 +71,23 @@ def lobby():
     
 @app.route("/add_cave", methods=["GET", "POST"])
 def add_cave():
-        nom_cave = request.form["nom"]
-        nb_etageres = request.form["nb_etageres"]
-        localite = request.form["localisation"]
-        cave = action.Cave(nb_etagere = nb_etageres, localisation = localite, nom = nom_cave)
-        id_new_cave = action.Cave.new_cave(cave)
-        #print(id_new_cave)
-        user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
-        action.User.link_cave(user, id_new_cave)
-        return redirect("/lobby")
+    nom_cave = request.form["nom"]
+    nb_etageres = request.form["nb_etageres"]
+    localite = request.form["localisation"]
+    cave = action.Cave(nb_etagere = nb_etageres, localisation = localite, nom = nom_cave)
+    id_new_cave = action.Cave.new_cave(cave)
+    #print(id_new_cave)
+    user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
+    action.User.link_cave(user, id_new_cave)
+    return redirect("/lobby")
+
+@app.route("/del_cave", methods=["GET", "POST"])
+def del_cave():
+    id_cave_to_del = request.form["id"]
+    print("popopo : ", id_cave_to_del)
+    cave = action.Cave(id=id_cave_to_del)
+    action.Cave.del_cave(cave)
+    return redirect("/lobby")
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)
