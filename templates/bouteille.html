@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %} La cave {% endblock %}
+
+{% block content %} 
+    <section class="cave">
+        <h2>Liste des bouteilles disponibles :</h2>
+        <table>
+            <th>
+                <td>
+                    <p>Nom </p>
+                </td>
+                <td>
+                    <p> Domaine </p>
+                </td>
+                <td>
+                    <p>Prix </p>
+                </td>
+                <td>
+                    <p>Type </p>
+                </td>
+                <td>
+                    <p>Région</p>
+                </td>
+                <td>
+                    <p>Année</p>
+                </td>
+                <td>
+                    <p>Prix</p>
+                </td>
+            </th>
+            <tbody>
+                {% for bouteille in list_bouteille %}
+                    <tr>
+                        <td>
+                            {{ etagere[0] }}
+                        </td>
+                        <td>
+                            {{ etagere[1] }}
+                        </td>
+                        <td>
+                            {{ etagere[2] }}
+                        </td>
+                        <td>
+                            {{ etagere[3] }}
+                        </td>
+                        <td>
+                            {{ etagere[4] }}
+                        </td>
+                        <td>
+                            {{ etagere[5] }}
+                        </td>
+                        <td>
+                            {{ etagere[6] }}
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section> 

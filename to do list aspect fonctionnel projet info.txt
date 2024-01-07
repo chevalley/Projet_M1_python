@@ -1,6 +1,5 @@
-générer page "hub" de l'utilisateur listant toute ses caves + ajout message si pas de cave + bouton visualiser la liste des bouteilles disponibles
+bouton visualiser la liste des bouteilles disponibles sur hub
 générer page liste bouteilles ajouter note perso et calcul note d'ensemble
 générer la liste des bouteilles existantes -----> générer dans la BDD un certain nombre de bouteilles
-après selection de la cave, listant toute ses étagères + ajout message si pas d'étagères + ajout d'information supplémentaire
+après selection de la cave, listant toute ses étagères + ajout d'information supplémentaire
 
----> doit etre fini avant le jeudi prochain

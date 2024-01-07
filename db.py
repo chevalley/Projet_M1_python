@@ -7,7 +7,7 @@ import sqlite3
 
 connection = sqlite3.connect("./viticulture.db")
 
-#cursor = connection.cursor()
+cursor = connection.cursor()
 
 
 
@@ -27,7 +27,7 @@ def adapte(sql_data):
 #query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';" <----- permet de vérifier si la table existe déjà     
 #cursor.execute(query)
 
-#query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, domaine TEXT, type TEXT, année INTEGER, region TEXT, note_m INTEGER, prix REAL);"
+#query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, domaine TEXT, type TEXT, année INTEGER, region TEXT, prix REAL);"
 #cursor.execute(query)
 
 #query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, num INTEGER, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
@@ -48,7 +48,49 @@ def adapte(sql_data):
 #query = "CREATE TABLE Evaluation (id_user INTEGER, id_vin INTEGER, note_perso INTEGER, commentaire TEXT, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
 #cursor.execute(query)
 
-connection.close()
+#connection.close()
+
+#------------------------------------------------#
+### Requêtes concernant la création des bouteilles
+
+
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Pinot Noir', 'Château du cos Vougeot', 'rouge', '2007', 'Bourgogne', '25.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Cabernet Franc', 'Clos Rougeard', 'rouge', '2016', 'Vallée de la Loire', '720.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Gamay', 'Domaine Carrel & Senger', 'rouge', '2022', 'Vallée de la Loire', '14.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Merlot', 'Domaine Py', 'rouge', '2021', 'Languedoc-Roussillon', '7.80') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Grenache', 'Domaine Paul mas', 'rouge', '2016', 'Bourgogne', '53.50') ;"
+#cursor.execute(query)
+
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Chardonnay', 'Maison Castel', 'Blanc', '2007', 'Bourgogne', '55.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Chenin Blanc', 'Domaine du Roc de l abbaye', 'Blanc', '2022', 'Vallée de la Loire', '10.45') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Pinot Menier', 'Doamine Nico le Paradis', 'Blanc', '2007', 'Champagne', '18.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Vermentino', 'Domaine de Cibadiès', 'Blanc', '2022', 'Corse', '4.50') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Petit Manseng', 'Franz Haas', 'Blanc', '2007', 'Languedoc-Roussillon', '34.29') ;"
+#cursor.execute(query)
+
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Bourgogne Rosé', 'Domaine Venot', 'rosé', ' 2021', 'Bourgogne', '8.90') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Rosé d Anjou', 'Domaine des Charmes', 'rosé', '2022', 'Vallée de la Loire', '4.49') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('L Apostrophe', 'Domaine Les Terres Promises', 'rosé', '2022', 'Provence', '14.00') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Gamay Rosé', 'Chignin Bergeron', 'rosé', '2022', 'Savoie', '10.50') ;"
+#cursor.execute(query)
+#query = "INSERT INTO Vin (nom, domaine, type, année, region, prix) VALUES ('Côtes du Rhône rosé', 'La Cave d Augustin Flaurent', 'rosé', '2007', 'Rhône', '12.50') ;"
+#cursor.execute(query)
+
+
+#connection.commit()
+#connection.close()
+
 
 #------------------------------------------------#
 

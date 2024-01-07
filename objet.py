@@ -27,7 +27,13 @@ class Cave :
         cursor = connection.cursor()
         row = cursor.execute(db.sql_list_etagere(self.id))
         data = db.adapte(row)
-        print(data)
+        list_etagere = []
+        for etagere in range(len(data)):
+            #                       num                region           capacite      disponibilite             id
+            etagere_actuelle = [data[etagere][1], data[etagere][2],data[etagere][3], data[etagere][4], data[etagere][0]]
+            list_etagere.append(etagere_actuelle)
+        print(list_etagere)
+        return list_etagere
     
     def del_cave(self):
         connection = db.connect_db()

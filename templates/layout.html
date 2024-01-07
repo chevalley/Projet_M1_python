@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Caves de Vins</title>
+    <title>Gestionnaire des Caves à Vins</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
 </head>
 <body>
 
     <header>
-        <h1> Gestion des Caves à Vins </h1>
+        {% if connecte != True %}
+            <h1> <a href="/">Gestion des Caves à Vins</a></h1>
+        {% else%}
+            <h1> <a href="/lobby">Gestion des Caves à Vins</a></h1>  
+        {% endif %}
         <h2> {% block title%}{% endblock %} </h2>
-
-        <a href="/inscription" class="register-button">S'enregistrer</a>
-        <a href="/connexion" class="login-button">Se connecter</a>
+        {% if connecte != True %}
+            <a href="/inscription" class="register-button">S'enregistrer</a>
+            <a href="/connexion" class="login-button">Se connecter</a>
+        {% else%}
+            <a href="/deconnexion" class="login-button">Se Déconnecter</a>
+        {% endif %}   
     </header>
 
     {% block content%}

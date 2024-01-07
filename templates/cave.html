@@ -3,7 +3,7 @@
 
 {% block content %} 
     <section class="cave">
-        <h2>Liste des étgères de la cave :</h2>
+        <h2>Liste des étagères de la cave :</h2>
         <table>
             <th>
                 <td>
@@ -18,26 +18,32 @@
                 <td>
                     <p>Emplacements disponibles : </p>
                 </td>
+                <td>
+                    <p>Gestion</p>
+                </td>
             </th>
             <tbody>
-                {% for cave in list_cave %}
+                {% for etagere in list_etagere %}
                     <tr>
                         <td>
-                            {{ cave[2] }}
+                            {{ etagere[0] }}
                         </td>
                         <td>
-                            {{ cave[1] }}
+                            {{ etagere[1] }}
                         </td>
                         <td>
-                            {{ cave[0] }}
+                            {{ etagere[2] }}
                         </td>
                         <td>
-                            <form method="POST" action="/del_cave">
-                                <input type="hidden" name="id" value= {{cave[3]}}>
+                            {{ etagere[3] }}
+                        </td>
+                        <td>
+                            <form method="POST" action="/clear_etagere">
+                                <input type="hidden" name="id" value= {{etagere[4]}}>
                                 <button class="delete-button">Supprimer</button>
                             </form>
-                            <form method="POST" action="/modify_cave">
-                                <input type="hidden" name="id" value= {{cave[3]}}>
+                            <form method="POST" action="/modify_etagere">
+                                <input type="hidden" name="id" value= {{etagere[4]}}>
                                 <button class="edit-button">Modifier</button>
                             </form>
                             
@@ -59,7 +65,8 @@
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" required>
 
-            <button type="submit">Créer une cave</button>
+            <button type="subm
+            it">Créer une cave</button>
         </form>
     </section> -->
 {% endblock %}

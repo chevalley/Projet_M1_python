@@ -65,9 +65,9 @@ def lobby():
     list_id_cave = action.User.caves_perso(user)
     #print("nb_cave",list_id_cave)
     if list_id_cave == None :
-        return render_template("lobby.html", nb_cave = 0)
+        return render_template("lobby.html", nb_cave = 0, connecte = True)
     else:  
-        return render_template("lobby.html", list_cave = list_id_cave)
+        return render_template("lobby.html", list_cave = list_id_cave, connecte = True)
     
 @app.route("/add_cave", methods=["GET", "POST"])
 def add_cave():
@@ -95,7 +95,12 @@ def la_cave():
     id_cave = request.form["id"]
     cave = action.Cave(id=id_cave)
     linked_etagere = action.Cave.linked_etagere(cave)
-    return render_template("cave.html", list_etagere = linked_etagere)
+    return render_template("cave.html", list_etagere = linked_etagere, connecte = True)
+
+@app.route("/deconnexion", methods=["GET", "POST"])
+def deconnexion():
+    session.clear()
+    return redirect("/")
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)
