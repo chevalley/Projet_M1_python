@@ -70,8 +70,8 @@ def sql_authentification(login, mdp):
 
 #Fonction en lien avec les caves
 
-def sql_new_cave(nb_etagere, localisation):
-    query = "INSERT INTO Cave (nb_etagere, localisation) VALUES ('" + nb_etagere + "', '" + localisation + "');"
+def sql_new_cave(nb_etagere, localisation, nom):
+    query = "INSERT INTO Cave (nb_etagere, localisation, nom) VALUES ('" + nb_etagere + "', '" + localisation + "', '" + nom + "');"
     return query
 
 def sql_recup_id_new_cave():
@@ -79,7 +79,7 @@ def sql_recup_id_new_cave():
     return query
 
 def sql_link_cave(id_user, id_cave):
-    query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + id_user +"', '" + id_cave + "');"
+    query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + str(id_user) +"', '" + str(id_cave) + "');"
     return query
 
 def sql_share_cave(id_user, id_cave):

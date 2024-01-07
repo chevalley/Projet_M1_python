@@ -2,10 +2,22 @@ import db
 
 class Cave : 
 
-    def __init__(self, nb_etagere, localisation):
+    def __init__(self, id = 0 ,  nb_etagere = 0, localisation = "unknown", nom = "unknown"):
         self.nb_etagere = nb_etagere
         self.localisation = localisation
-
+        self.nom = nom
+        self.id = id
+    
+    def new_cave(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        cursor.execute(db.sql_new_cave(self.nb_etagere, self.localisation, self.nom))
+        connection.commit()
+        row = cursor.execute(db.sql_recup_id_new_cave())
+        id_new_cave = db.adapte(row)[0][0]
+        connection.close()
+        #print("dans new_cave de objet :", id_new_cave)
+        return id_new_cave
 
 class Etagère :
 
@@ -78,3 +90,17 @@ class User :
         row = cursor.execute(db.sql_list_cave(self.id))
         data = db.adapte(row)
         connection.close()
+        caves_trouvees = []
+        for cave in data : 
+            cave_actuelle = [data[cave][3], data[cave][4], data[cave][5]]
+            caves_trouvees.append(cave_actuelle)
+        print("ici : ", caves_trouvees)
+        return caves_trouvees
+    
+    def link_cave(self, id_cave):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        cursor.execute(db.sql_link_cave(self.id, id_cave))
+        connection.commit()
+        connection.close()
+        return 0
