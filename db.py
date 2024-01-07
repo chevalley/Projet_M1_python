@@ -33,7 +33,7 @@ def adapte(sql_data):
 #query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
 #cursor.execute(query)
 
-#query = "CREATE TABLE Cave (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nb_etagere INTEGER, localisation TEXTE);"
+#query = "CREATE TABLE Cave (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nb_etagere INTEGER, localisation TEXTE, nom TEXTE);"
 #cursor.execute(query)
 
 #query = "CREATE TABLE User (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, login TEXTE, mdp TEXTE, nom TEXTE, prenom TEXTE)"
