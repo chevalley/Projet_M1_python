@@ -16,7 +16,7 @@ class Cave :
         row = cursor.execute(db.sql_recup_id_new_cave())
         id_new_cave = db.adapte(row)[0][0]
         for num in range(1, int(self.nb_etagere)+1):
-            cursor.execute(db.sql_new_etagere("unknown", "0", "0", self.id, num))
+            cursor.execute(db.sql_new_etagere("unknown", "0", "0", id_new_cave, num))
             connection.commit()
         connection.close()
         #print("dans new_cave de objet :", id_new_cave)
@@ -32,6 +32,8 @@ class Cave :
     def del_cave(self):
         connection = db.connect_db()
         cursor = connection.cursor()
+        cursor.execute(db.sql_remove_all_etageres(self.id))
+        connection.commit()
         cursor.execute(db.sql_unpossessed_cave(self.id))
         connection.commit()
         cursor.execute(db.sql_remove_cave(self.id))

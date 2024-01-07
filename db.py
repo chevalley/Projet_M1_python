@@ -106,10 +106,9 @@ def sql_new_etagere(region, capacite, disponibilite, id_cave, num):
     query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave, num) VALUES ('" + region + "', '" + str(capacite) + "', '" + str(disponibilite) + "', '" + str(id_cave) + "', '" + str(num) + "') ;"
     return query
 
-def sql_remove_etagere(id_etagere):
-    query = "DELETE FROM Etagere WHERE id = '" + id_etagere + "'; "
+def sql_remove_all_etageres(id_cave):
+    query = "DELETE FROM Etagere WHERE id_cave = '" + str(id_cave) + "'; "
     return query
-
 
 #Fonction en lien avec les bouteilles
 def sql_list_linked_wine(region):

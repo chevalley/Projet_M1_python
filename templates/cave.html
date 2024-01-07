@@ -2,65 +2,64 @@
 {% block title %} La cave {% endblock %}
 
 {% block content %} 
-                <section class="cave">
-                    <h2>Liste des étgères de la cave :</h2>
-                    <table>
-                        <th>
-                            <td>
-                                <p>Numéro de l'étagère : </p>
-                            </td>
-                            <td>
-                                <p> Région des bouteilles : </p>
-                            </td>
-                            <td>
-                                <p>Capacité : </p>
-                            </td>
-                            <td>
-                                <p>Emplacements disponibles : </p>
-                            </td>
-                        </th>
-                        <tbody>
-                            {% for cave in list_cave %}
-                                <tr>
-                                    <td>
-                                        {{ cave[2] }}
-                                    </td>
-                                    <td>
-                                        {{ cave[1] }}
-                                    </td>
-                                    <td>
-                                        {{ cave[0] }}
-                                    </td>
-                                    <td>
-                                        <form method="POST" action="/del_cave">
-                                            <input type="hidden" name="id" value= {{cave[3]}}>
-                                            <button class="delete-button">Supprimer</button>
-                                        </form>
-                                        <form method="POST" action="/modify_cave">
-                                            <input type="hidden" name="id" value= {{cave[3]}}>
-                                            <button class="edit-button">Modifier</button>
-                                        </form>
-                                        
-                                    </td> 
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </section> <!--
-                <section class="form _new_cave">
-                    <h2>Créer une nouvelle cave</h2>
-                    <form method="POST" action="/add_cave">
-                        <label for="nb_etageres">Nombre d'étagères:</label>
-                        <input type="number" id="nb_etageres" name="nb_etageres" required>
+    <section class="cave">
+        <h2>Liste des étgères de la cave :</h2>
+        <table>
+            <th>
+                <td>
+                    <p>Numéro de l'étagère : </p>
+                </td>
+                <td>
+                    <p> Région des bouteilles : </p>
+                </td>
+                <td>
+                    <p>Capacité : </p>
+                </td>
+                <td>
+                    <p>Emplacements disponibles : </p>
+                </td>
+            </th>
+            <tbody>
+                {% for cave in list_cave %}
+                    <tr>
+                        <td>
+                            {{ cave[2] }}
+                        </td>
+                        <td>
+                            {{ cave[1] }}
+                        </td>
+                        <td>
+                            {{ cave[0] }}
+                        </td>
+                        <td>
+                            <form method="POST" action="/del_cave">
+                                <input type="hidden" name="id" value= {{cave[3]}}>
+                                <button class="delete-button">Supprimer</button>
+                            </form>
+                            <form method="POST" action="/modify_cave">
+                                <input type="hidden" name="id" value= {{cave[3]}}>
+                                <button class="edit-button">Modifier</button>
+                            </form>
+                            
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section> <!--
+    <section class="form _new_cave">
+        <h2>Créer une nouvelle cave</h2>
+        <form method="POST" action="/add_cave">
+            <label for="nb_etageres">Nombre d'étagères:</label>
+            <input type="number" id="nb_etageres" name="nb_etageres" required>
 
-                        <label for="localisation">Localisation:</label>
-                        <input type="text" id="localisation" name="localisation" required>
+            <label for="localisation">Localisation:</label>
+            <input type="text" id="localisation" name="localisation" required>
 
-                        <label for="nom">Nom:</label>
-                        <input type="text" id="nom" name="nom" required>
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" required>
 
-                        <button type="submit">Créer une cave</button>
-                    </form>
-                </section> -->
-        {% endif %}
+            <button type="submit">Créer une cave</button>
+        </form>
+    </section> -->
 {% endblock %}
