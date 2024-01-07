@@ -87,7 +87,7 @@ def sql_share_cave(id_user, id_cave):
     return query
 
 def sql_list_cave(id_user):
-    query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = '" + id_user + "' ;" 
+    query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = '" + str(id_user) + "' ;" 
     return query
 
 def sql_remove_cave(id_cave):

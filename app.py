@@ -63,11 +63,11 @@ def identification():
 def lobby():
     user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
     list_id_cave = action.User.caves_perso(user)
-    if list_id_cave == []:
+    print(list_id_cave)
+    if list_id_cave == None :
         return render_template("lobby.html", nb_cave = 0)
-    else:
-        
-        return render_template("lobby.html", list_id_cave)
+    else:  
+        return render_template("lobby.html", list_cave = list_id_cave)
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)

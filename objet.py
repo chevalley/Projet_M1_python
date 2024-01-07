@@ -75,6 +75,6 @@ class User :
     def caves_perso(self):
         connection = db.connect_db()
         cursor = connection.cursor()
-        row = cursor.execute(db.sql_list_cave())
+        row = cursor.execute(db.sql_list_cave(self.id))
         data = db.adapte(row)
         connection.close()
