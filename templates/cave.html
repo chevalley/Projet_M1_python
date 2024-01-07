@@ -1,43 +1,22 @@
 {% extends "layout.html" %}
-{% block title %} Mes caves {% endblock %}
+{% block title %} La cave {% endblock %}
 
 {% block content %} 
-    <section>
-
-        {% if nb_cave == 0 %}
-        <p>Vous êtes passionné de vin et souhaitez commencer votre collection ?
-        Ne tardez plus, créez votre première cave dès maintenant pour organiser et suivre votre collection de vins préférés. </p>
-        <p>Que vous soyez un amateur débutant ou un connaisseur expérimenté, notre plateforme vous permet de gérer facilement vos bouteilles, de connaître leur emplacement et de garder une trace de votre collection grandissante. 
-            Cliquez sur le bouton ci-dessous pour démarrer votre aventure vinicole et créer votre première cave personnalisée.</p>
-            <div class="add-cave-form">
-                <h2>Créer une nouvelle cave</h2>
-                <form method="POST" action="/add_cave">
-                    <label for="nb_etageres">Nombre d'étagères:</label>
-                    <input type="number" id="nb_etageres" name="nb_etageres" required>
-
-                    <label for="localisation">Localisation:</label>
-                    <input type="text" id="localisation" name="localisation" required>
-
-                    <label for="nom">Nom:</label>
-                    <input type="text" id="nom" name="nom" required>
-
-                    <button type="submit">Créer ma première cave</button>
-                </form>
-            </div>
-
-        {% else  %}
                 <section class="cave">
-                    <h2>Liste des caves :</h2>
+                    <h2>Liste des étgères de la cave :</h2>
                     <table>
                         <th>
                             <td>
-                                <p>Nom de la cave : </p>
+                                <p>Numéro de l'étagère : </p>
                             </td>
                             <td>
-                                <p>Localisation: Ville, Pays : </p>
+                                <p> Région des bouteilles : </p>
                             </td>
                             <td>
-                                <p>Nombre d'étagères: </p>
+                                <p>Capacité : </p>
+                            </td>
+                            <td>
+                                <p>Emplacements disponibles : </p>
                             </td>
                         </th>
                         <tbody>

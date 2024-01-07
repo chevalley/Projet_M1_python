@@ -15,9 +15,19 @@ class Cave :
         connection.commit()
         row = cursor.execute(db.sql_recup_id_new_cave())
         id_new_cave = db.adapte(row)[0][0]
+        for num in range(1, int(self.nb_etagere)+1):
+            cursor.execute(db.sql_new_etagere("unknown", "0", "0", self.id, num))
+            connection.commit()
         connection.close()
         #print("dans new_cave de objet :", id_new_cave)
         return id_new_cave
+    
+    def linked_etagere(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row = cursor.execute(db.sql_list_etagere(self.id))
+        data = db.adapte(row)
+        print(data)
     
     def del_cave(self):
         connection = db.connect_db()
@@ -30,13 +40,12 @@ class Cave :
         #print("dans new_cave de objet :", id_new_cave)
 
 class Etagère :
-
-    def __init__(self, id_etagere, region, disponibilite, capacite):
-        self.num = id_etagere
+    def __init__(self, num, region, disponibilite, capacite, id_etagere):
+        self.num = num
         self.region = region
         self.disponibilite = disponibilite
         self.capacite = capacite
-
+        self.id = id_etagere
 
 class Vin :
     def __init__(self, domaine, nom, type, année, region, commentaires, note_perso, photo, prix):

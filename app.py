@@ -89,5 +89,13 @@ def del_cave():
     action.Cave.del_cave(cave)
     return redirect("/lobby")
 
+@app.route("/modify_cave", methods=["GET", "POST"])
+def la_cave():
+    #user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
+    id_cave = request.form["id"]
+    cave = action.Cave(id=id_cave)
+    linked_etagere = action.Cave.linked_etagere(cave)
+    return render_template("cave.html", list_etagere = linked_etagere)
+
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)

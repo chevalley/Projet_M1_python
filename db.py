@@ -5,11 +5,11 @@ import sqlite3
 
 #Fonction manipulation base de donnée
 
-#connection = sqlite3.connect("./viticulture.db")
+connection = sqlite3.connect("./viticulture.db")
 
 #cursor = connection.cursor()
 
-#connection.close()
+
 
 #cursor.execute("SQL query")
 
@@ -30,7 +30,7 @@ def adapte(sql_data):
 #query = "CREATE TABLE Vin (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nom TEXTE, domaine TEXT, type TEXT, année INTEGER, region TEXT, note_m INTEGER, prix REAL);"
 #cursor.execute(query)
 
-#query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
+#query = "CREATE TABLE Etagere (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, num INTEGER, region TEXT, capacite INTEGER, disponibilite INTEGER, id_cave INTEGER, FOREIGN KEY(id_cave) REFERENCES Cave(id));"
 #cursor.execute(query)
 
 #query = "CREATE TABLE Cave (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nb_etagere INTEGER, localisation TEXTE, nom TEXTE);"
@@ -47,6 +47,8 @@ def adapte(sql_data):
 
 #query = "CREATE TABLE Evaluation (id_user INTEGER, id_vin INTEGER, note_perso INTEGER, commentaire TEXT, FOREIGN KEY(id_user) REFERENCES User(id), FOREIGN KEY(id_vin) REFERENCES Vin(id));"
 #cursor.execute(query)
+
+connection.close()
 
 #------------------------------------------------#
 
@@ -82,10 +84,6 @@ def sql_link_cave(id_user, id_cave):
     query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + str(id_user) +"', '" + str(id_cave) + "');"
     return query
 
-def sql_share_cave(id_user, id_cave):
-    query = "INSERT INTO Possession (id_user, id_cave) VALUES ('" + id_user + "', '" + id_cave + "');"
-    return query
-
 def sql_list_cave(id_user):
     query = "SELECT * FROM Possession JOIN Cave ON Possession.id_cave = Cave.id WHERE id_user = '" + str(id_user) + "' ;" 
     return query
@@ -104,8 +102,8 @@ def sql_list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : 
     query = "SELECT * FROM Etagere WHERE id_cave = '" + id_cave + "' ;"
     return query
 
-def sql_new_etagere(region, capacite, disponibilite, id_cave):
-    query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave) VALUES ('" + region + "', '" + capacite + "', '" + disponibilite + "', '" + id_cave + "') ;"
+def sql_new_etagere(region, capacite, disponibilite, id_cave, num):
+    query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave, num) VALUES ('" + region + "', '" + str(capacite) + "', '" + str(disponibilite) + "', '" + str(id_cave) + "', '" + str(num) + "') ;"
     return query
 
 def sql_remove_etagere(id_etagere):
