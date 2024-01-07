@@ -91,7 +91,7 @@ class User :
         data = db.adapte(row)
         connection.close()
         caves_trouvees = []
-        for cave in data : 
+        for cave in range(len(data)) :  
             cave_actuelle = [data[cave][3], data[cave][4], data[cave][5]]
             caves_trouvees.append(cave_actuelle)
         print("ici : ", caves_trouvees)
