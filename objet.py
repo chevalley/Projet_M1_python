@@ -70,14 +70,13 @@ class Etagère :
         row =cursor.execute(db.sql_possessed_wine(self.id))
         data = db.adapte(row)
         connection.close()
-        print("là :",data)
-        """
+        #print("là :",data)
         list_bouteille = []
-        for bouteille in range(len(data)):
-            bouteille_actuelle = [data[bouteille][1], data[bouteille][2], data[bouteille][3], data[bouteille][4], data[bouteille][5], data[bouteille][6]]
+        for linked_bouteille in range(len(data)):
+            #print("là :", linked_bouteille)
+            bouteille_actuelle = [data[linked_bouteille][1], data[linked_bouteille][2]]
             list_bouteille.append(bouteille_actuelle)
         return list_bouteille
-        """
 
     def info_etagere(self):
         connection = db.connect_db()
@@ -124,6 +123,19 @@ class Vin :
             list_region.append(region[0])
         #print(list_region)
         return list_region
+
+    def select_vin(list_vin_id):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        list_data_vin = []
+        for id_vin in list_vin_id:
+            row = cursor.execute(db.sql_select_vin(id_vin))
+            data = db.adapte(row)
+            #print("ici", data)#      nom         domaine     type        année       prix
+            list_data_vin.append([data[0][1], data[0][2], data[0][3], data[0][4], data[0][6]])
+            #print("la", list_data_vin)
+        connection.close()
+        return list_data_vin
 
 class User :
     def __init__(self, nom = "unknown", prenom = "unknown", login = "unknown", mdp = "unknown", id = 0):

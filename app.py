@@ -133,9 +133,20 @@ def visual_etagere():
     id_etagere = request.form["id"]
     session["id_etagere"] = id_etagere
     etagere = action.Etagère(id_etagere=id_etagere)
-    action.Etagère.list_linked_wine(etagere)
+    list_wine_inside = action.Etagère.list_linked_wine(etagere)
     action.Etagère.info_etagere(etagere)
-    return render_template("etagere.html", region = etagere.region)
+    #print("popoppo : ", list_wine_inside)
+    list_wine_id = []
+    list_wine_qte = []
+    for bouteille in list_wine_inside:
+        list_wine_id.append(bouteille[0])
+        list_wine_qte.append(bouteille[1])
+
+    data_vin_inside = action.Vin.select_vin(list_wine_id)
+    print("popoppo : ", data_vin_inside)
+    for data_vin in range(len(data_vin_inside)) : 
+        data_vin_inside[data_vin].append(list_wine_qte[data_vin])
+    return render_template("etagere.html", region = etagere.region, list_bouteille = data_vin_inside, connecte = True)
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = "8080")

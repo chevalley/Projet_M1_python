@@ -169,6 +169,10 @@ def sql_possessed_wine(id_etagere):
     query = "SELECT * from Contenu  WHERE id_etagere = '" + str(id_etagere) + "' ;"
     return query
 
+def sql_select_vin(id_vin):
+    query = "SELECT * from Vin  WHERE id = '" + str(id_vin) + "' ;"
+    return query
+
 def sql_add_bottle(id_etagere, id_vin, quantite):
     query = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES ('" + id_etagere + "', '" + id_vin + "', '" + quantite + "') ;"
     return query
