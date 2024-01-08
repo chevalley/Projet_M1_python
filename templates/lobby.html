@@ -29,21 +29,22 @@
                 <section class="cave">
                     <h2>Liste des caves :</h2>
                     <table>
-                        <th>
-                            <td>
-                                <p>Nom de la cave : </p>
-                            </td>
-                            <td>
-                                <p>Localisation: Ville, Pays : </p>
-                            </td>
-                            <td>
-                                <p>Nombre d'étagères: </p>
-                            </td>
-                            <td>
-                                <p>Gestion</p>
-                            </td>
-                        </th>
                         <tbody>
+                            <tr>
+                                <td>
+                                    <p>Nom de la cave : </p>
+                                </td>
+                                <td>
+                                    <p>Localisation: Ville, Pays : </p>
+                                </td>
+                                <td>
+                                    <p>Nombre d'étagères: </p>
+                                </td>
+                                <td>
+                                    <p>Gestion</p>
+                                </td>
+                            </tr>
+                            
                             {% for cave in list_cave %}
                                 <tr>
                                     <td>
@@ -87,7 +88,8 @@
                     </form>
                 </section>
                 <div>
-                    <button>Voir la liste des bouteilles</button>
+                    <a href="/bouteille"><button>Voir la liste des bouteilles</button></a>
+                    
                 </div>
         {% endif %}
 

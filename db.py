@@ -152,6 +152,9 @@ def sql_remove_all_etageres(id_cave):
     query = "DELETE FROM Etagere WHERE id_cave = '" + str(id_cave) + "'; "
     return query
 
+def sql_conf_etagere(id_etagere, region, capa, dispo):
+    query = "UPDATE Etagere SET disponibilite = '" + str(dispo) + "', capacite = '"+ str(capa) +"', region = '"+ region +"' WHERE id = '"+ str(id_etagere) +"' ;"
+    return query
 #Fonction en lien avec les bouteilles
 def sql_list_linked_wine(region):
     query = "SELECT * from Vin WHERE region = '" + region + "'; "
@@ -161,10 +164,17 @@ def sql_add_bottle(id_etagere, id_vin, quantite):
     query = "INSERT INTO Contenu (id_etagere, id_vin, quantite) VALUES ('" + id_etagere + "', '" + id_vin + "', '" + quantite + "') ;"
     return query
 
+def sql_list_wine():
+    query = "SELECT * from Vin ;"
+    return query
+
 def sql_fill_etagere(dispo, id_etagere):
     query = "UPDATE Etagere SET disponibilite = '" + dispo + "' WHERE id = '"+ id_etagere +"' ;"
     return query
 
+def sql_list_region():
+    query = "SELECT DISTINCT region from Vin;"
+    return query
 #def remove_bottles(id_etagere, id_vin, quantite): 
 #----> prochaine requête à faire, nécessite de mettre au claire la recupération des bouteilles déjà présentes dans l'étagère
 #----> devra potentiellement etre divisé en deux fonctions selon la qté de bouteilles du même types restantes dans l'étagère

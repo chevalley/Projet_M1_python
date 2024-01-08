@@ -32,7 +32,7 @@ class Cave :
             #                       num                region           capacite      disponibilite             id
             etagere_actuelle = [data[etagere][1], data[etagere][2],data[etagere][3], data[etagere][4], data[etagere][0]]
             list_etagere.append(etagere_actuelle)
-        print(list_etagere)
+        #print(list_etagere)
         return list_etagere
     
     def del_cave(self):
@@ -48,12 +48,21 @@ class Cave :
         #print("dans new_cave de objet :", id_new_cave)
 
 class Etagère :
-    def __init__(self, num, region, disponibilite, capacite, id_etagere):
+    def __init__(self, id_etagere, num = 0, region = "unknown", disponibilite = 0, capacite = 0, id_cave = 0):
+        self.id = id_etagere
         self.num = num
         self.region = region
         self.disponibilite = disponibilite
-        self.capacite = capacite
-        self.id = id_etagere
+        self.capacite = capacite 
+        self.id_cave = id_cave
+
+    def reconf(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        print("ici", self.id)
+        cursor.execute(db.sql_conf_etagere(self.id, self.region, self.capacite, self.disponibilite))
+        connection.commit()
+        connection.close()
 
 class Vin :
     def __init__(self, domaine, nom, type, année, region, commentaires, note_perso, photo, prix):
@@ -66,6 +75,31 @@ class Vin :
         self.note_perso = note_perso
         self.photo = photo
         self.prix = prix
+
+    def list_all_wine():
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row = cursor.execute(db.sql_list_wine())
+        data = db.adapte(row)
+        connection.close()
+        list_vin = []
+        for vin in range(len(data)):
+            vin_actuel = [data[vin][1], data[vin][2], data[vin][3], data[vin][4], data[vin][5], data[vin][6]]
+            list_vin.append(vin_actuel)
+        return list_vin
+
+    def list_all_region():
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row = cursor.execute(db.sql_list_region())
+        data = db.adapte(row)
+        connection.close()
+        list_region = []
+        for vin in range(len(data)):
+            region = [data[vin][0]]
+            list_region.append(region[0])
+        #print(list_region)
+        return list_region
 
 class User :
     def __init__(self, nom = "unknown", prenom = "unknown", login = "unknown", mdp = "unknown", id = 0):

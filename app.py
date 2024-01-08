@@ -84,7 +84,7 @@ def add_cave():
 @app.route("/del_cave", methods=["GET", "POST"])
 def del_cave():
     id_cave_to_del = request.form["id"]
-    print("popopo : ", id_cave_to_del)
+    #print("popopo : ", id_cave_to_del)
     cave = action.Cave(id=id_cave_to_del)
     action.Cave.del_cave(cave)
     return redirect("/lobby")
@@ -92,7 +92,11 @@ def del_cave():
 @app.route("/modify_cave", methods=["GET", "POST"])
 def la_cave():
     #user = action.User(session["nom"], session["prenom"], session["login"], id = session["id"])
-    id_cave = request.form["id"]
+    if request.method=="POST":
+        id_cave = request.form["id"]
+        session["cave"] = id_cave
+    else:
+        id_cave = session["cave"]
     cave = action.Cave(id=id_cave)
     linked_etagere = action.Cave.linked_etagere(cave)
     return render_template("cave.html", list_etagere = linked_etagere, connecte = True)
@@ -101,6 +105,28 @@ def la_cave():
 def deconnexion():
     session.clear()
     return redirect("/")
+
+@app.route("/bouteille", methods=["GET", "POST"])
+def bouteilles():
+    list_vin = action.Vin.list_all_wine()
+    return render_template("bouteille.html", list_bouteille = list_vin, connecte = True)
+
+@app.route("/modify_etagere", methods=["GET", "POST"])
+def conf_etagere():
+    id_etagere = request.form["id"]
+    session["id_etagere"] = id_etagere
+    list_wine_region = action.Vin.list_all_region()
+    return render_template("configure_etagere.html", connecte = True, list_region = list_wine_region)
+
+@app.route("/reconfigure_etagere", methods=["GET", "POST"])
+def reconf_etagere():
+    region_etagere = request.form["Région"]
+    capacité_etagere = request.form["capacité"]
+    dispo_etagere = capacité_etagere
+    id_etagere = session["id_etagere"]
+    etagere = action.Etagère(id_etagere = id_etagere, region = region_etagere, capacite = capacité_etagere, disponibilite = dispo_etagere)
+    action.Etagère.reconf(etagere)
+    return redirect("/modify_cave")
 
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = 80)

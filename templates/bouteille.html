@@ -5,30 +5,28 @@
     <section class="cave">
         <h2>Liste des bouteilles disponibles :</h2>
         <table>
-            <th>
-                <td>
-                    <p>Nom</p>
-                </td>
-                <td>
-                    <p> Domaine</p>
-                </td>
-                <td>
-                    <p>Prix</p>
-                </td>
-                <td>
-                    <p>Type</p>
-                </td>
-                <td>
-                    <p>Région</p>
-                </td>
-                <td>
-                    <p>Année</p>
-                </td>
-                <td>
-                    <p>Prix</p>
-                </td>
-            </th>
             <tbody>
+                    <td>
+                        <p>Nom</p>
+                    </td>
+                    <td>
+                        <p> Domaine</p>
+                    </td>
+                    <td>
+                        <p>Prix</p>
+                    </td>
+                    <td>
+                        <p>Type</p>
+                    </td>
+                    <td>
+                        <p>Région</p>
+                    </td>
+                    <td>
+                        <p>Année</p>
+                    </td>
+                    <td>
+                        <p>Prix</p>
+                    </td>
                 {% for bouteille in list_bouteille %}
                     <tr>
                         <td>
@@ -52,9 +50,9 @@
                         <td>
                             {{ bouteille[6] }}
                         </td>
-                        
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </section> 
+{% endblock %} 

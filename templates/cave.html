@@ -5,50 +5,51 @@
     <section class="cave">
         <h2>Liste des étagères de la cave :</h2>
         <table>
-            <th>
-                <td>
-                    <p>Numéro de l'étagère : </p>
-                </td>
-                <td>
-                    <p> Région des bouteilles : </p>
-                </td>
-                <td>
-                    <p>Capacité : </p>
-                </td>
-                <td>
-                    <p>Emplacements disponibles : </p>
-                </td>
-                <td>
-                    <p>Gestion</p>
-                </td>
-            </th>
             <tbody>
+                <tr>
+                    <td>
+                        <p>Numéro de l'étagère : </p>
+                    </td>
+                    <td>
+                        <p> Région des bouteilles : </p>
+                    </td>
+                    <td>
+                        <p>Capacité : </p>
+                    </td>
+                    <td>
+                        <p>Emplacements disponibles : </p>
+                    </td>
+                    <td>
+                        <p>Gestion</p>
+                    </td>
+                </tr>
+            
                 {% for etagere in list_etagere %}
-                    <tr>
-                        <td>
-                            {{ etagere[0] }}
-                        </td>
-                        <td>
-                            {{ etagere[1] }}
-                        </td>
-                        <td>
-                            {{ etagere[2] }}
-                        </td>
-                        <td>
-                            {{ etagere[3] }}
-                        </td>
-                        <td>
-                            <form method="POST" action="/clear_etagere">
-                                <input type="hidden" name="id" value= {{etagere[4]}}>
-                                <button class="delete-button">Supprimer</button>
-                            </form>
-                            <form method="POST" action="/modify_etagere">
-                                <input type="hidden" name="id" value= {{etagere[4]}}>
-                                <button class="edit-button">Modifier</button>
-                            </form>
-                            
-                        </td> 
-                    </tr>
+                <tr>
+                    <td>
+                        {{ etagere[0] }}
+                    </td>
+                    <td>
+                        {{ etagere[1] }}
+                    </td>
+                    <td>
+                        {{ etagere[2] }}
+                    </td>
+                    <td>
+                        {{ etagere[3] }}
+                    </td>
+                    <td>
+                        <form method="POST" action="/clear_etagere">
+                            <input type="hidden" name="id" value= {{etagere[4]}}>
+                            <button class="delete-button">Supprimer</button>
+                        </form>
+                        <form method="POST" action="/modify_etagere">
+                            <input type="hidden" name="id" value= {{etagere[4]}}>
+                            <button class="edit-button">Modifier</button>
+                        </form>
+                        
+                    </td> 
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
