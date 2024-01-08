@@ -64,16 +64,40 @@ class Etagère :
         connection.commit()
         connection.close()
 
+    def list_linked_wine(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row =cursor.execute(db.sql_possessed_wine(self.id))
+        data = db.adapte(row)
+        connection.close()
+        print("là :",data)
+        """
+        list_bouteille = []
+        for bouteille in range(len(data)):
+            bouteille_actuelle = [data[bouteille][1], data[bouteille][2], data[bouteille][3], data[bouteille][4], data[bouteille][5], data[bouteille][6]]
+            list_bouteille.append(bouteille_actuelle)
+        return list_bouteille
+        """
+
+    def info_etagere(self):
+        connection = db.connect_db()
+        cursor = connection.cursor()
+        row =cursor.execute(db.sql_select_etagere(self.id))
+        data = db.adapte(row)
+        connection.close()
+        self.region = data[0][2]
+        self.capacite = data[0][3]
+        self.disponibilite = data[0][4]
+        self.id_cave = data[0][5]
+
 class Vin :
-    def __init__(self, domaine, nom, type, année, region, commentaires, note_perso, photo, prix):
+    def __init__(self, domaine, nom, type, année, region, note_perso, prix):
         self.domaine = domaine
         self.nom = nom
         self.type = type
         self.année = année
         self.region = region
-        self.commentaire = commentaires
         self.note_perso = note_perso
-        self.photo = photo
         self.prix = prix
 
     def list_all_wine():

@@ -144,6 +144,10 @@ def sql_list_etagere(id_cave): # ---> ne permet pas de récupérer le contenu : 
     query = "SELECT * FROM Etagere WHERE id_cave = '" + id_cave + "' ;"
     return query
 
+def sql_select_etagere(id_etagere): # ---> ne permet pas de récupérer le contenu : nécessité de créer une requête qui annoncera quelles bouteilles sont déjà présentes
+    query = "SELECT * FROM Etagere WHERE id = '" + str(id_etagere) + "' ;"
+    return query
+
 def sql_new_etagere(region, capacite, disponibilite, id_cave, num):
     query = "INSERT INTO Etagere (region, capacite, disponibilite, id_cave, num) VALUES ('" + region + "', '" + str(capacite) + "', '" + str(disponibilite) + "', '" + str(id_cave) + "', '" + str(num) + "') ;"
     return query
@@ -155,9 +159,14 @@ def sql_remove_all_etageres(id_cave):
 def sql_conf_etagere(id_etagere, region, capa, dispo):
     query = "UPDATE Etagere SET disponibilite = '" + str(dispo) + "', capacite = '"+ str(capa) +"', region = '"+ region +"' WHERE id = '"+ str(id_etagere) +"' ;"
     return query
+
 #Fonction en lien avec les bouteilles
 def sql_list_linked_wine(region):
     query = "SELECT * from Vin WHERE region = '" + region + "'; "
+    return query
+
+def sql_possessed_wine(id_etagere):
+    query = "SELECT * from Contenu  WHERE id_etagere = '" + str(id_etagere) + "' ;"
     return query
 
 def sql_add_bottle(id_etagere, id_vin, quantite):

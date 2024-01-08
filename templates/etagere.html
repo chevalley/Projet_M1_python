@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %} L'étagère {% endblock %}
+
+{% block content %} 
+    <section class="cave">
+        <h2>Liste des bouteilles dans l'étagère :</h2>
+        <h3>Région Viticole : {{region}}</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Nom des bouteilles : </p>
+                    </td>
+                    <td>
+                        <p> Type de vin : </p>
+                    </td>
+                    <td>
+                        <p>Année de mise en bouteille :</p>
+                    </td>
+                    <td>
+                        <p>Nombre de bouteilles :  </p>
+                    </td>
+                    <td>
+                        <p>Prix de la bouteille :  </p>
+                    </td>
+                    <td colspan="2">
+                        <p>Gestion</p>
+                    </td>
+                </tr>
+            
+                {% for bouteille in list_bouteille %}
+                <tr>
+                    <td>
+                        {{ bouteille[0] }}
+                    </td>
+                    <td>
+                        {{ bouteille[1] }}
+                    </td>
+                    <td>
+                        {{ bouteille[2] }}
+                    </td>
+                    <td>
+                        {{ bouteille[3] }}
+                    </td>
+                    <td>
+                        {{ bouteille[4] }}
+                    </td>
+                    <td>
+                        <form method="POST" action="/clear_etagere">
+                            <input type="hidden" name="id" value= {{bouteille[5]}}>
+                            <button class="delete-button">Ajouter</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="/modify_etagere">
+                            <input type="hidden" name="id" value= {{bouteille[5]}}>
+                            <button class="edit-button">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %} 

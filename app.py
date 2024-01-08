@@ -128,5 +128,14 @@ def reconf_etagere():
     action.Etagère.reconf(etagere)
     return redirect("/modify_cave")
 
+@app.route("/manage_etagere", methods=["GET", "POST"])
+def visual_etagere():
+    id_etagere = request.form["id"]
+    session["id_etagere"] = id_etagere
+    etagere = action.Etagère(id_etagere=id_etagere)
+    action.Etagère.list_linked_wine(etagere)
+    action.Etagère.info_etagere(etagere)
+    return render_template("etagere.html", region = etagere.region)
+
 if __name__ == "__main__" : 
     app.run(debug=True, host = "0.0.0.0", port = "8080")

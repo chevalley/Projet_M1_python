@@ -19,7 +19,7 @@
                     <td>
                         <p>Emplacements disponibles : </p>
                     </td>
-                    <td>
+                    <td colspan="3">
                         <p>Gestion</p>
                     </td>
                 </tr>
@@ -43,11 +43,18 @@
                             <input type="hidden" name="id" value= {{etagere[4]}}>
                             <button class="delete-button">Supprimer</button>
                         </form>
+                    </td>
+                    <td>
                         <form method="POST" action="/modify_etagere">
                             <input type="hidden" name="id" value= {{etagere[4]}}>
-                            <button class="edit-button">Modifier</button>
+                            <button class="edit-button">Configurer</button>
                         </form>
-                        
+                    </td>
+                    <td>
+                        <form method="POST" action="/manage_etagere">
+                            <input type="hidden" name="id" value= {{etagere[4]}}>
+                            <button class="edit-button">Gérer</button>
+                        </form>
                     </td> 
                 </tr>
                 {% endfor %}
