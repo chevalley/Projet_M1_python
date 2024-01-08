@@ -141,7 +141,6 @@ def visual_etagere():
     for bouteille in list_wine_inside:
         list_wine_id.append(bouteille[0])
         list_wine_qte.append(bouteille[1])
-
     data_vin_inside = action.Vin.select_vin(list_wine_id)
     print("popoppo : ", data_vin_inside)
     for data_vin in range(len(data_vin_inside)) : 
